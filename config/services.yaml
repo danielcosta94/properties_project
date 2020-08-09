@@ -29,3 +29,16 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    property_repository:
+        class: App\Repository\PropertyRepository
+        arguments:
+            - '@kernel'
+
+    property_service:
+        class: App\Service\PropertyService
+        arguments:
+            - '@property_repository'
+
+    currency_service:
+        class: App\Service\CurrencyService
