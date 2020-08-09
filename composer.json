@@ -2,9 +2,10 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-intl": "^7.4",
         "ext-json": "^7.4",
         "composer/package-versions-deprecated": "^1.10",
         "doctrine/annotations": "^1.0",

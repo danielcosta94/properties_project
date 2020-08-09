@@ -2,26 +2,24 @@
 
 namespace App\Repository;
 
-use Symfony\Component\HttpKernel\KernelInterface;
-
 class PropertyRepository
 {
     const FOLDER = "/public";
     const PROPERTIES_FILE = "properties-2.json";
 
     /**
-     * @var KernelInterface
+     * @var string
      */
-    private $kernel;
+    private $projectDir;
 
-    public function __construct(KernelInterface $kernel)
+    public function __construct(string $projectDir)
     {
-        $this->kernel = $kernel;
+        $this->projectDir = $projectDir;
     }
 
     private function loadPropertyFile()
     {
-        $url = $this->kernel->getProjectDir() . self::FOLDER . '/'. self::PROPERTIES_FILE;
+        $url = $this->projectDir . self::FOLDER . '/'. self::PROPERTIES_FILE;
         return json_decode(file_get_contents($url), true);
     }
 

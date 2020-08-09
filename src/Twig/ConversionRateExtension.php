@@ -37,19 +37,14 @@ class ConversionRateExtension extends AbstractExtension
     }
 
     /**
-     * @param $amount
+     * @param float $amount
      * @param string $currency_origin
      * @param string $currency_destiny
      * @return array|null
      */
-    public function calculateExchangeRate($amount, $currency_origin, $currency_destiny)
+    public function calculateExchangeRate(float $amount, string $currency_origin, string $currency_destiny)
     {
         $currency_result = $this->currencyService->calculateExchangeRate($currency_origin, $currency_destiny, (float) $amount);
-
-        if (isset($currency_result["amount"])) {
-            $currency_result["amount"] = round($currency_result["amount"], 2);
-            return $currency_result;
-        }
-        return null;
+        return isset($currency_result) ? $currency_result : null;
     }
 }

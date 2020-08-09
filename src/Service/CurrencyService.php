@@ -13,11 +13,11 @@ class CurrencyService
      * @param float $amount
      * @return array|null
      */
-    public function calculateExchangeRate($currency_origin, $currency_destiny, $amount)
+    public function calculateExchangeRate(string $currency_origin, string $currency_destiny, float $amount)
     {
         if ($currency_origin === self::VENEZUELAN_BOLIVAR && $currency_destiny === self::EURO) {
             return [
-                'amount' =>  $amount / 7.75,
+                'amount' =>  round($amount / 7.75, 2),
                 'currency' => $currency_destiny
             ];
         }
