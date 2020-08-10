@@ -1,27 +1,29 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Unit;
 
 use App\Repository\PropertyRepository;
+use App\Service\PropertyService;
 use Monolog\Test\TestCase;
 
-class PropertyRepositoryTest extends TestCase
+class PropertyServiceTest extends TestCase
 {
     /**
-     * @var PropertyRepository
+     * @var PropertyService
      */
-    private $propertyRepository;
+    private $propertyService;
 
     protected function setUp()
     {
         parent::setUp();
-        $project_url = dirname(__DIR__);
-        $this->propertyRepository = new PropertyRepository($project_url);
+        $project_url = dirname(__DIR__, 2);
+        $propertyRepository = new PropertyRepository($project_url);
+        $this->propertyService = new PropertyService($propertyRepository);
     }
 
     public function testGetPropertyByIdWithValidId()
     {
-        $property_actual = $this->propertyRepository->getPropertyById(88047);
+        $property_actual = $this->propertyService->getPropertyById(88047);
         $property_expected = $this->getPropertyExpected();
 
         $this->assertEquals($property_expected, $property_actual);
@@ -29,7 +31,7 @@ class PropertyRepositoryTest extends TestCase
 
     public function testGetPropertyByIdWithInvalidId()
     {
-        $property_actual = $this->propertyRepository->getPropertyById(523523434);
+        $property_actual = $this->propertyService->getPropertyById(523523434);
         $property_expected = null;
 
         $this->assertEquals($property_expected, $property_actual);
@@ -37,7 +39,7 @@ class PropertyRepositoryTest extends TestCase
 
     public function testGetPropertyByIdWithNullId()
     {
-        $property_actual = $this->propertyRepository->getPropertyById(null);
+        $property_actual = $this->propertyService->getPropertyById(null);
         $property_expected = null;
 
         $this->assertEquals($property_expected, $property_actual);
