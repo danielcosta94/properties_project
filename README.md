@@ -24,7 +24,6 @@ $ scss public/scss/style.scss public/css/style.css
 
 To run this application locally on localhost
 
-First Tab:
 ```sh
 $ symfony serve
 ```
